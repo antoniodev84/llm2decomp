@@ -1,0 +1,9 @@
+llm2decomp
+out.c
+*.o
+*.elf
+.llm2decomp-cache/
+decomp/
+tudo.c
+tudo_asm.txt
+fns.txt
