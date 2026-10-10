@@ -32,7 +32,7 @@ type chatResponse struct {
 	} `json:"error,omitempty"`
 }
 
-func LLMRefine(code, compileErr string) (string, error) {
+func LLMRefine(fns []string, code, compileErr string) (string, error) {
 	base := os.Getenv("LLM_BASE_URL")
 	if base == "" {
 		base = "https://api.openai.com/v1"
@@ -56,7 +56,7 @@ func LLMRefine(code, compileErr string) (string, error) {
 		Model: model,
 		Messages: []chatMessage{
 			{Role: "system", Content: SystemPrompt},
-			{Role: "user", Content: UserPrompt(code, compileErr)},
+			{Role: "user", Content: UserPrompt(fns, code, compileErr)},
 		},
 		Temperature: 0.1,
 		Stream:      false,
